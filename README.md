@@ -1,8 +1,8 @@
 # FormGenerator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/form_generator`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![hexlet-check](https://github.com/alexSmkh/rails-project-lvl1/actions/workflows/hexlet-check.yml/badge.svg?branch=main)](https://github.com/alexSmkh/rails-project-lvl1/actions/workflows/hexlet-check.yml)
 
-TODO: Delete this and the text above, and describe your gem
+This gem is simple implementation of the [Simple-Form](https://github.com/heartcombo/simple_form).
 
 ## Installation
 
@@ -22,18 +22,25 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'form_generator'
 
-## Development
+FormGenerator::Tag.build('br')
+# <br>
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+FormGenerator::Tag.build('img', src: 'path/to/image')
+# <img src="path/to/image">
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+FormGenerator::Tag.build('input', type: 'submit', value: 'Save')
+# <input type="submit" value="Save">
 
-## Contributing
+FormGenerator::Tag.build('label') { 'Email' }
+# <label>Email</label>
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/form_generator. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/form_generator/blob/main/CODE_OF_CONDUCT.md).
+FormGenerator::Tag.build('label', for: 'email') { 'Email' }
+# <label for="email">Email</label>
 
-## Code of Conduct
+FormGenerator::Tag.build('div')
+# <div></div>
+```
 
-Everyone interacting in the FormGenerator project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/form_generator/blob/main/CODE_OF_CONDUCT.md).

@@ -1,6 +1,7 @@
 # FormGenerator
 
 [![hexlet-check](https://github.com/alexSmkh/rails-project-lvl1/actions/workflows/hexlet-check.yml/badge.svg?branch=main)](https://github.com/alexSmkh/rails-project-lvl1/actions/workflows/hexlet-check.yml)
+[![Rubocop](https://github.com/alexSmkh/rails-project-lvl1/actions/workflows/rubocop-check.yml/badge.svg?branch=main)](https://github.com/alexSmkh/rails-project-lvl1/actions/workflows/rubocop-check.yml)
 
 This gem is simple implementation of the [Simple-Form](https://github.com/heartcombo/simple_form).
 

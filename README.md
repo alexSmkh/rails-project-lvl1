@@ -26,22 +26,21 @@ Or install it yourself as:
 ```ruby
 require 'form_generator'
 
-FormGenerator::Tag.build('br')
-# <br>
+User = Struct.new(:name, :job, keyword_init: true)
+user = User.new job: 'hexlet'
 
-FormGenerator::Tag.build('img', src: 'path/to/image')
-# <img src="path/to/image">
+FormGenerator.form_for user do |f|
+  f.input :name
+  f.input :job
+  f.submit
+end
 
-FormGenerator::Tag.build('input', type: 'submit', value: 'Save')
-# <input type="submit" value="Save">
-
-FormGenerator::Tag.build('label') { 'Email' }
-# <label>Email</label>
-
-FormGenerator::Tag.build('label', for: 'email') { 'Email' }
-# <label for="email">Email</label>
-
-FormGenerator::Tag.build('div')
-# <div></div>
+# <form action="#" method="post">
+#   <label for="name">Name</label>
+#   <input name="name" type="text">
+#   <label for="job">Job</label>
+#   <input name="job" type="text" value="hexlet">
+#   <input name="commit" type="submit" value="Save" >
+# </form>
 ```
 

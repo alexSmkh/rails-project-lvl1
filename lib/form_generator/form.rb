@@ -8,10 +8,9 @@ class Form
   end
 
   def input(name_attr, as_option = {})
-    as_option_value = as_option.key(:as)
     tag_value = @field_schema.public_send(name_attr)
     @elements << Tag.build('label', { for: name_attr }) { name_attr.capitalize }
-    @elements << if as_option_value == 'text'
+    @elements << if as_option.key(:as) == 'text'
                    textarea_attrs = { name: name_attr, cols: '20', rows: '40' }
                    Tag.build('textarea', textarea_attrs) { value.nil? ? '' : value }
                  else

@@ -1,27 +1,16 @@
 # frozen_string_literal: true
 
 require_relative 'form_generator/version'
+require_relative 'form_generator/form'
+require_relative 'form_generator/tag'
 
 module FormGenerator
-  class Error < StandardError
-  end
+  class Error < StandardError; end
 
-  # This class responsible for creating an html tag
-  class Tag
-    class << self
-      def build(tag, attrs = {})
-        tag_attrs = build_attrs(attrs)
-
-        return "<#{tag}#{tag_attrs}>#{yield}</#{tag}>" if block_given?
-
-        "<#{tag}#{tag_attrs}>"
-      end
-
-      private
-
-      def build_attrs(attrs)
-        attrs.map { |key, value| " #{key}=\"#{value}\"" }.join
-      end
-    end
+  def self.form_for(field_schema, params = {})
+    action = params.key?(:url) ? params[:url] : '#'
+    form = Form.new(field_schema, action)
+    yield(form)
+    form.render
   end
 end

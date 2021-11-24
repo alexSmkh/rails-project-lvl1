@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
-require 'form_generator'
-require 'form_generator/input'
-require 'form_generator/label'
-require 'form_generator/form'
-require 'form_generator/textarea'
+require 'hexlet_code'
+require 'hexlet_code/input'
+require 'hexlet_code/label'
+require 'hexlet_code/form'
+require 'hexlet_code/textarea'
 
 require 'minitest/autorun'

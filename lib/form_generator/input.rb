@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'tag'
+
 class Input
   def initialize(attrs)
     @input_attrs = {}

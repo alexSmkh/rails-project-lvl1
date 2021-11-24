@@ -2,7 +2,6 @@
 
 require_relative 'form_generator/version'
 require_relative 'form_generator/form'
-require_relative 'form_generator/tag'
 
 module FormGenerator
   class Error < StandardError; end

@@ -1,31 +1,36 @@
 # frozen_string_literal: true
 
+require_relative 'label'
+require_relative 'input'
+require_relative 'textarea'
+
 class Form
-  def initialize(field_schema, url)
+  def initialize(field_schema, action_url = '#')
     @field_schema = field_schema
     @elements = []
-    @action = url
+    @action = action_url
   end
 
-  def input(name_attr, as_option = {})
-    tag_value = @field_schema.public_send(name_attr)
-    @elements << Tag.build('label', { for: name_attr }) { name_attr.capitalize }
-    @elements << if as_option.key(:as) == 'text'
-                   textarea_attrs = { name: name_attr, cols: '20', rows: '40' }
-                   Tag.build('textarea', textarea_attrs) { value.nil? ? '' : value }
+  def input(name_attr, options = {})
+    attr_value = @field_schema.public_send(name_attr)
+    @elements << Label.new({ for: name_attr })
+    @elements << if options[:as] == 'text'
+                   inner_text = attr_value.nil? ? '' : attr_value
+                   textarea_attrs = { name: name_attr, inner_text: inner_text }
+                   Textarea.new(textarea_attrs)
                  else
-                   input_attrs = { name: name_attr, type: 'text' }
-                   input_attrs.merge(value: tag_value) unless tag_value.nil?
-                   Tag.build('input', input_attrs)
+                   input_attrs = { name: name_attr, value: attr_value, type: options[:type] }
+                   Input.new(input_attrs)
                  end
   end
 
   def submit(value = 'save')
     submit_attrs = { name: 'commit', type: 'submit', value: value.capitalize }
-    @elements << Tag.build('input', submit_attrs)
+    @elements << Input.new(submit_attrs)
   end
 
   def render
-    %(<form action="#{@action}" method="post">#{@elements.join}</form>)
+    rendered_elements = @elements.map(&:render).join
+    %(<form action="#{@action}" method="post">#{rendered_elements}</form>)
   end
 end

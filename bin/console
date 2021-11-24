@@ -3,6 +3,8 @@
 
 require 'bundler/setup'
 require 'form_generator'
+require_relative '../lib/form_generator/input'
+require_relative '../lib/form_generator/textarea'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.

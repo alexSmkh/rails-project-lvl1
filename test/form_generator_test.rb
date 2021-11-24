@@ -7,7 +7,20 @@ class FormGeneratorTest < Minitest::Test
     refute_nil ::FormGenerator::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def setup
+    @user_struct = Struct.new(:name, :job, :about, keyword_init: true)
+  end
+
+  def test_form_for_function
+    expected_form = File.read('test/fixtures/form/form_with_elements.html')
+    user = @user_struct.new(name: 'Frank', job: 'programmer')
+    form = FormGenerator.form_for user, url: '/user' do |f|
+      f.input :name
+      f.input :job
+      f.input :about, as: 'text'
+      f.submit
+    end
+
+    assert_equal expected_form, form
   end
 end

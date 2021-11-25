@@ -5,10 +5,14 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in form_generator.gemspec
 gemspec
 
-gem 'rake', '~> 13.0'
+gem 'rake'
 
-gem 'minitest', '~> 5.14.4'
+group :test do
+  gem 'rspec'
+  gem 'rspec-html-matchers'
+end
 
-gem 'rubocop', '~> 1.21'
-
-gem 'prettier'
+group :development do
+  gem 'prettier'
+  gem 'rubocop'
+end

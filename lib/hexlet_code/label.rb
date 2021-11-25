@@ -3,13 +3,12 @@
 require_relative 'tag'
 
 class Label
-  def initialize(attrs)
-    @label_attrs = {}
-    @label_attrs[:for] = attrs[:for]
-    @label_inner_text = attrs[:for].capitalize
+  def initialize(attrs, inner_text)
+    @attrs = attrs
+    @inner_text = inner_text
   end
 
   def render
-    Tag.build('label', @label_attrs) { @label_inner_text }
+    Tag.build('label', @attrs) { @inner_text }
   end
 end

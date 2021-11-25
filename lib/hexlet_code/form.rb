@@ -3,23 +3,25 @@
 require_relative 'label'
 require_relative 'input'
 require_relative 'textarea'
+require_relative 'tag'
 
 class Form
-  def initialize(field_schema, action_url = '#')
+  def initialize(field_schema, attrs = { url: '#', method: 'post' })
     @field_schema = field_schema
     @elements = []
-    @action = action_url
+    @attrs = attrs
   end
 
   def input(name_attr, options = {})
     attr_value = @field_schema.public_send(name_attr)
-    @elements << Label.new({ for: name_attr })
-    @elements << if options[:as] == 'text'
+    element_attrs = options.except(:as)
+    @elements << Label.new({ for: name_attr }, name_attr)
+    @elements << if options[:as] == :text
                    inner_text = attr_value.nil? ? '' : attr_value
-                   textarea_attrs = { name: name_attr, inner_text: inner_text }
-                   Textarea.new(textarea_attrs)
+                   textarea_attrs = { name: name_attr }.merge(element_attrs)
+                   Textarea.new(textarea_attrs, inner_text)
                  else
-                   input_attrs = { name: name_attr, value: attr_value, type: options[:type] }
+                   input_attrs = { name: name_attr, value: attr_value }.merge(element_attrs)
                    Input.new(input_attrs)
                  end
   end
@@ -31,6 +33,6 @@ class Form
 
   def render
     rendered_elements = @elements.map(&:render).join
-    %(<form action="#{@action}" method="post">#{rendered_elements}</form>)
+    Tag.build('form', @attrs) { rendered_elements }
   end
 end

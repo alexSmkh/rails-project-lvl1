@@ -4,13 +4,11 @@ require_relative 'tag'
 
 class Input
   def initialize(attrs)
-    @input_attrs = {}
-    @input_attrs[:name] = attrs[:name]
-    @input_attrs[:type] = attrs[:type] || 'text'
-    @input_attrs[:value] = attrs[:value]
+    default_attrs = { type: 'text' }
+    @attrs = default_attrs.merge(attrs)
   end
 
   def render
-    Tag.build('input', @input_attrs.compact)
+    Tag.build('input', @attrs)
   end
 end

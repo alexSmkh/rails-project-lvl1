@@ -4,6 +4,7 @@ require 'spec_helper'
 
 User = Struct.new(:name, :job, keyword_init: true)
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe HexletCode do
   it 'new' do
     user = User.new name: 'rob'
@@ -58,3 +59,4 @@ RSpec.describe HexletCode do
     expect(actual).to raise_error NoMethodError
   end
 end
+# rubocop:enable Metrics/BlockLength

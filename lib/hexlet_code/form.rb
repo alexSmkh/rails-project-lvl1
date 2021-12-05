@@ -10,19 +10,15 @@ class Form
     @field_schema = field_schema
     @elements = []
     @attrs = attrs
+    @input_types = { text: Textarea }
+    @input_types.default = Input
   end
 
   def input(name_attr, options = {})
     attr_value = @field_schema.public_send(name_attr)
-    element_attrs = options.except(:as)
-    @elements << if options[:as] == :text
-                   inner_text = attr_value.nil? ? '' : attr_value
-                   textarea_attrs = { name: name_attr }.merge(element_attrs)
-                   Textarea.new(textarea_attrs, inner_text)
-                 else
-                   input_attrs = { name: name_attr, value: attr_value }.merge(element_attrs)
-                   Input.new(input_attrs)
-                 end
+    element_attrs = options.except(:as).merge({ name: name_attr })
+    params = attr_value.nil? ? element_attrs : element_attrs.merge({ value: attr_value })
+    @elements << @input_types[options[:as]].new(params)
   end
 
   def submit(value = 'save')

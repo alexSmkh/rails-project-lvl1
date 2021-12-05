@@ -3,9 +3,9 @@
 require_relative 'tag'
 
 class Label
-  def initialize(attrs, inner_text)
+  def initialize(attrs)
     @attrs = attrs
-    @inner_text = inner_text
+    @inner_text = attrs[:for]
   end
 
   def render

@@ -3,3 +3,6 @@ install: # Install dependencies
 
 lint:
 	bundle exec rubocop .
+
+test:
+	bundle exec rake spec

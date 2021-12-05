@@ -6,9 +6,10 @@ class Input
   def initialize(attrs)
     default_attrs = { type: 'text' }
     @attrs = default_attrs.merge(attrs)
+    @label = Label.new({ for: attrs[:name] }, attrs[:name])
   end
 
   def render
-    Tag.build('input', @attrs)
+    [@label.render, Tag.build('input', @attrs)]
   end
 end

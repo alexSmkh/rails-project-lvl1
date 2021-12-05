@@ -15,7 +15,6 @@ class Form
   def input(name_attr, options = {})
     attr_value = @field_schema.public_send(name_attr)
     element_attrs = options.except(:as)
-    @elements << Label.new({ for: name_attr }, name_attr)
     @elements << if options[:as] == :text
                    inner_text = attr_value.nil? ? '' : attr_value
                    textarea_attrs = { name: name_attr }.merge(element_attrs)

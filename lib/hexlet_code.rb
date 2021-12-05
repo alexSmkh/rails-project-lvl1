@@ -8,7 +8,7 @@ module HexletCode
 
   def self.form_for(fields_scheme, attrs = {})
     form = Form.new(fields_scheme, attrs)
-    yield(form) if block_given?
+    yield(form)
     form.render
   end
 end

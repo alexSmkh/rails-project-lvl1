@@ -21,8 +21,8 @@ class Form
     @elements << Form.const_get(input_type).new(params)
   end
 
-  def submit(value = 'save')
-    submit_attrs = { name: 'commit', type: 'submit', value: value.capitalize }
+  def submit(value = 'save', options = {})
+    submit_attrs = { name: 'commit', type: 'submit', value: value.capitalize }.merge(options)
     @elements << Input.new(submit_attrs)
   end
 

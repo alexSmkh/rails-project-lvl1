@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Textarea
+class Text
   autoload(:Tag, 'hexlet_code/tag')
   autoload(:Label, 'hexlet_code/label')
 

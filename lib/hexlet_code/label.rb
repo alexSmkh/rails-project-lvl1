@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'tag'
-
 class Label
+  autoload(:Tag, 'hexlet_code/tag')
+
   def initialize(attrs)
     @attrs = attrs
     @inner_text = attrs[:for]

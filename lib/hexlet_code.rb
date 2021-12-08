@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'hexlet_code/version'
-require_relative 'hexlet_code/form'
-
 module HexletCode
+  autoload(:Form, 'hexlet_code/form.rb')
+  autoload(:VERSION, 'hexlet_code/version')
+
   class Error < StandardError; end
 
   def self.form_for(fields_scheme, attrs = {})

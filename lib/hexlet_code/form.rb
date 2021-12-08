@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'label'
-require_relative 'input'
-require_relative 'textarea'
-require_relative 'tag'
-
 class Form
+  autoload(:Input, 'hexlet_code/input')
+  autoload(:Textarea, 'hexlet_code/textarea')
+  autoload(:Tag, 'hexlet_code/tag')
+
   def initialize(field_schema, attrs = { url: '#', method: 'post' })
     @field_schema = field_schema
     @elements = []

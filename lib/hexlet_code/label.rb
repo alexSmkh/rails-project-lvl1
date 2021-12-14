@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Label
-  autoload(:Tag, 'hexlet_code/tag')
+  autoload(:TagBuilder, 'hexlet_code/tag_builder')
 
   def initialize(attrs)
     @attrs = attrs
@@ -9,6 +9,6 @@ class Label
   end
 
   def render
-    Tag.build('label', @attrs) { @inner_text }
+    TagBuilder.build('label', @attrs) { @inner_text }
   end
 end

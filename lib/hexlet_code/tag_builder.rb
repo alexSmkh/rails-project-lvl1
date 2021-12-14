@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Tag
+class TagBuilder
   class << self
     def build(tag, attrs = {})
       tag_attrs = build_attrs(attrs)

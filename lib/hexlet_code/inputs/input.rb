@@ -10,6 +10,6 @@ class Input < BaseInput
   end
 
   def render
-    [@label.render, Tag.build('input', @attrs)].join
+    [@label.render, TagBuilder.build('input', @attrs)].join
   end
 end

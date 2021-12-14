@@ -3,7 +3,7 @@
 class Form
   autoload(:Inputs, 'hexlet_code/inputs')
   autoload(:Submit, 'hexlet_code/submit')
-  autoload(:Tag, 'hexlet_code/tag')
+  autoload(:TagBuilder, 'hexlet_code/tag_builder')
 
   def initialize(field_schema, attrs = { url: '#', method: 'post' })
     @field_schema = field_schema
@@ -28,6 +28,6 @@ class Form
 
   def render
     rendered_elements = @elements.map(&:render).join
-    Tag.build('form', @attrs) { rendered_elements }
+    TagBuilder.build('form', @attrs) { rendered_elements }
   end
 end

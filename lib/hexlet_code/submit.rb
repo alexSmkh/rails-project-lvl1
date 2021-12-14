@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Submit
-  autoload(:Tag, 'hexlet_code/tag')
+  autoload(:TagBuilder, 'hexlet_code/tag_builder')
 
   def initialize(attrs)
     default_attrs = { type: 'submit' }
@@ -9,6 +9,6 @@ class Submit
   end
 
   def render
-    Tag.build('input', @attrs)
+    TagBuilder.build('input', @attrs)
   end
 end

@@ -11,6 +11,6 @@ class Text < BaseInput
   end
 
   def render
-    [@label.render, Tag.build('textarea', @attrs) { @inner_text }].join
+    [@label.render, TagBuilder.build('textarea', @attrs) { @inner_text }].join
   end
 end

@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Form
-  autoload(:Input, 'hexlet_code/input')
+  autoload(:Inputs, 'hexlet_code/inputs')
   autoload(:Submit, 'hexlet_code/submit')
-  autoload(:Text, 'hexlet_code/text')
   autoload(:Tag, 'hexlet_code/tag')
 
   def initialize(field_schema, attrs = { url: '#', method: 'post' })
@@ -19,7 +18,7 @@ class Form
 
     default_input_type = 'input'
     input_type = (options[:as] || default_input_type).capitalize.to_s
-    @elements << Form.const_get(input_type).new(params)
+    @elements << Inputs.const_get(input_type).new(params)
   end
 
   def submit(value = 'save', options = {})

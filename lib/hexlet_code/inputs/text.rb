@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
-class Text
-  autoload(:Tag, 'hexlet_code/tag')
-  autoload(:Label, 'hexlet_code/label')
+require_relative 'base_input'
 
+class Text < BaseInput
   def initialize(params)
+    super(params)
     default_attrs = { cols: '20', rows: '40' }
     @attrs = default_attrs.merge(params.except(:value))
     @inner_text = params[:value] || ''
-    @label = Label.new({ for: params[:name] })
   end
 
   def render

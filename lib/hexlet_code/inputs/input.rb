@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-class Input
-  autoload(:Tag, 'hexlet_code/tag')
-  autoload(:Label, 'hexlet_code/label')
+require_relative 'base_input'
 
+class Input < BaseInput
   def initialize(attrs)
+    super(attrs)
     default_attrs = { type: 'text' }
     @attrs = default_attrs.merge(attrs)
-    @label = Label.new({ for: attrs[:name] })
   end
 
   def render

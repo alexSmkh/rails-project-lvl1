@@ -2,7 +2,7 @@
 
 class Form
   autoload(:Input, 'hexlet_code/input')
-  autoload(:Text, 'hexlet_code/textarea')
+  autoload(:Text, 'hexlet_code/text')
   autoload(:Tag, 'hexlet_code/tag')
 
   def initialize(field_schema, attrs = { url: '#', method: 'post' })

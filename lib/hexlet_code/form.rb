@@ -2,6 +2,7 @@
 
 class Form
   autoload(:Input, 'hexlet_code/input')
+  autoload(:Submit, 'hexlet_code/submit')
   autoload(:Text, 'hexlet_code/text')
   autoload(:Tag, 'hexlet_code/tag')
 
@@ -22,8 +23,8 @@ class Form
   end
 
   def submit(value = 'save', options = {})
-    submit_attrs = { name: 'commit', type: 'submit', value: value.capitalize }.merge(options)
-    @elements << Input.new(submit_attrs)
+    submit_attrs = { name: 'commit', value: value.capitalize }.merge(options)
+    @elements << Submit.new(submit_attrs)
   end
 
   def render
